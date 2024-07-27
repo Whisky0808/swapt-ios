@@ -1,3 +1,13 @@
+# swapt-ios
+using reactive native cli and expo cli together, build the app with EAS(expo), which ca download in app store even though you are still in dev stage, choose to use the development build rather than the expo Go, which is nore productive and creative while you are developing.  
+
+# reference documents
+- Reactive Native Component https://reactnative.dev/docs/touchableopacity
+- Expo Cli https://docs.expo.dev/get-started/start-developing/
+- Tailwind/ Native wind https://www.nativewind.dev/quick-starts/expo
+
+
+
 # Welcome to your Expo app 👋
 
 This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).

@@ -1,11 +1,12 @@
 {
   "expo": {
+    "jsEngine": "hermes",
     "name": "swapt-app",
     "slug": "swapt-app",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
-    "scheme": "myapp",
+    "scheme": "swapt-app",
     "userInterfaceStyle": "automatic",
     "splash": {
       "image": "./assets/images/splash.png",
@@ -14,13 +15,20 @@
     },
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.kyra0808.swaptapp"
+      "bundleIdentifier": "com.kyra0808.swaptapp",
+      "package": "com.swapt.app",
+      "runtimeVersion": "1.0.0",
+      "jsEngine": "hermes"
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "runtimeVersion": {
+        "policy": "appVersion"
+      },
+      "package": "com.kyra0808.swaptapp"
     },
     "web": {
       "bundler": "metro",
@@ -40,6 +48,9 @@
       "eas": {
         "projectId": "c1d93835-774d-4faf-9e5d-d1209b44fa03"
       }
+    },
+    "updates": {
+      "url": "https://u.expo.dev/c1d93835-774d-4faf-9e5d-d1209b44fa03"
     }
   }
 }

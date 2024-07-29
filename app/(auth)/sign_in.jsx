@@ -90,9 +90,7 @@ const SignIn = () => {
             <Link href={"sign_up"}>
               <Text className="font-pblack text-red-900 text-lg">Sign Up</Text>
             </Link>
-            <Text className="font-psemibold text-lg" onPress={logOut}>
-              log out
-            </Text>
+           
           </View>
         </View>
       </ScrollView>

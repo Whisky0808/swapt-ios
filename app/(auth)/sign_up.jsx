@@ -6,7 +6,7 @@ import logo from "../../assets/images/logo.png";
 import FormField from "../../components/FormField";
 import CustomButton from "../../components/CustomButton";
 import { Link,router } from "expo-router";
-import { createUser } from "../../lib/appwrite";
+import { createUser, logOut } from "../../lib/appwrite";
 
 const SignUp = () => {
   //set it as an Object rather than a string seperately
@@ -35,6 +35,7 @@ const SignUp = () => {
     console.log(form)
     setIsSubmitting(true);
     try {
+      // await logOut();
       const result = await createUser(form.email,form.password,form.username)
       
       // set it to the global state, cuz the context and session does need the  info

@@ -5,6 +5,7 @@ import {Link} from 'expo-router'
 import CustomButton from '../components/CustomButton'
 import { Redirect, router } from "expo-router";
 
+
 import * as SplashScreen from 'expo-splash-screen';
 
 SplashScreen.preventAutoHideAsync();
@@ -13,20 +14,28 @@ SplashScreen.preventAutoHideAsync();
 export default function App() {
  
   return (
-    
-    <View className="flex-1 items-center justify-center bg-white p-3">
-      <Text className="text-3xl font-pblack">Welcome to Swapt app!</Text>
-      <Text className='text-2xl font-pbold'>Enjoy Your Coupons Here</Text>
+
+
+      <View className="flex-1  justify-center bg-white p-3">
+      <View className="mb-6">
+      <Text className="text-3xl font-pblack mb-3">Welcome to Swapt app!</Text>
+      <Text className='text-xs font-pbold'>Enjoy Your Coupons Here!</Text>
+      </View>
       <StatusBar style="auto" />
 
       <CustomButton
         title="Continue to Login"
-        handlePress={()=>router.push('./sign_in')}
+        handlePress={()=>router.push('./(tabs)')}
+        // handlePress={()=>router.push('./sign_in')}
         containerStyles="w-full mt-7"
       ></CustomButton>
       
       
     </View>
+
+  
+    
+    
     
   )
 }

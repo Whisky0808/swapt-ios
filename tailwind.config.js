@@ -1,15 +1,27 @@
 /** @type {import('tailwindcss').Config} */
+// only affect the className, the tailwind stuff
 module.exports = {
   content: ["./app/**/*.{js,jsx,ts,tsx}", "./components/**/*.{js,jsx,ts,tsx}"],
   theme: {
     extend: {
       colors: {
+        //black--letter color
         primary: "#161622",
+        //pink
+        margin:'#F6D6F9',
+        
+        //light green
+        button:'#E7FE80',
+
         secondary: {
-          DEFAULT: "#FF9C01",
-          100: "#FF9001",
-          200: "#FF8E01",
+          //purple
+          DEFAULT: "#EFEEFE",
+          100: "#d8d6fd",
+          200: "#c2befb",
+          300:'#7F7EF7',
+
         },
+        
         black: {
           DEFAULT: "#000",
           100: "#1E1E2D",

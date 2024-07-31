@@ -4,15 +4,17 @@ import ParallaxScrollView from '@/components/ParallaxScrollView';
 import { ThemedText } from '@/components/ThemedText';
 import { ThemedView } from '@/components/ThemedView';
 import React from "react";
+import { useAvater } from '../../components/AvatarProvider';
 
 export default function HomeScreen() {
+  const {avatar} = useAvater()
   return (
     <ParallaxScrollView
-      headerBackgroundColor={{ light: '#A1CEDC', dark: '#1D3D47' }}
+      headerBackgroundColor={{ light: '#F6D6F9', dark: '#1D3D47' }}
       headerImage={
         <Image
-          source={require('@/assets/images/partial-react-logo.png')}
-          style={styles.reactLogo}
+          source={avatar? { uri: avatar }:require('@/assets/images/logo.png')}
+          style={styles.Logo}
         />
       }>
       <ThemedView style={styles.titleContainer}>
@@ -60,11 +62,11 @@ const styles = StyleSheet.create({
     gap: 8,
     marginBottom: 8,
   },
-  reactLogo: {
-    height: 178,
-    width: 290,
-    bottom: 0,
-    left: 0,
+  Logo: {
+    height: 140,
+    width: 160,
+    bottom: 10,
+    left: 10,
     position: 'absolute',
   },
 });

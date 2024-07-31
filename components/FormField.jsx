@@ -17,7 +17,7 @@ const FormField = ({
       <Text>{title}</Text>
       <View
         className={
-          "w-full h-16 px-4 border-2 border-black rounded-2xl items-center flex-row focus:border-secondary-100"
+          "w-full h-16 px-4 border-2 border-black rounded-2xl items-center flex-row focus:border-secondary-300"
             
         }
       >

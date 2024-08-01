@@ -25,8 +25,8 @@ export default function App() {
 
       <CustomButton
         title="Continue to Login"
-        handlePress={()=>router.push('./(tabs)')}
-        // handlePress={()=>router.push('./sign_in')}
+        // handlePress={()=>router.push('./(tabs)')}
+        handlePress={()=>router.push('./sign_in')}
         containerStyles="w-full mt-7"
       ></CustomButton>
       

@@ -15,6 +15,7 @@ export default function HomeScreen() {
         <Image
           source={avatar? { uri: avatar }:require('@/assets/images/logo.png')}
           style={styles.Logo}
+          resizeMode="contain"
         />
       }>
       <ThemedView style={styles.titleContainer}>
@@ -63,8 +64,8 @@ const styles = StyleSheet.create({
     marginBottom: 8,
   },
   Logo: {
-    height: 140,
-    width: 160,
+    height: '60%',
+    width: '55%',
     bottom: 10,
     left: 10,
     position: 'absolute',

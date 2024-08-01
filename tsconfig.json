@@ -15,5 +15,5 @@
     "**/*.tsx",
     ".expo/types/**/*.ts",
     "expo-env.d.ts"
-, "App.jsx", "app/(tabs)/index.jsx", "app/index.jsx", "components/navigation/TabBarIcon.tsx", "app/(tabs)/inventory.jsx", "app/(tabs)/explore.jsx"  ]
+, "App.jsx", "app/(tabs)/index.jsx", "app/index.jsx", "components/navigation/TabBarIcon.tsx", "app/(tabs)/inventory.jsx", "app/(tabs)/explore.jsx", "components/Collapsible.tsx"  ]
 }

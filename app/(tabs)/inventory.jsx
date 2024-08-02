@@ -32,9 +32,11 @@ const inventory = () => {
           // store_id: "3fb7da68-43ac-11ef-8e10-35bd6906fbae"
         }),
       });
+      const status = response.status;
       const data = await response.json();
+    
 
-      if (data && data.length > 0) {
+      if (data && data.length > 0 && status != 400) {
         setInventoryData(data);
         setDisplay(true)
       } else {

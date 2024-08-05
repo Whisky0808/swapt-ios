@@ -9,12 +9,15 @@ import CustomButton from "@/components/CustomButton";
 import API_ENDPOINTS from "../../lib/api";
 import { Collapsible } from "@/components/Collapsible";
 import ItemCard from "../../components/ItemCard"
+import ListItem from "../../components/ListItem"
 
 const inventory = () => {
   const [inventoryId, setInventoryId] = useState("");
   const [inventoryData, setInventoryData] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [display,setDisplay] = useState(false)
+  
+
   const handleInventory = (e) => {
     setInventoryId(e);
   };
@@ -29,7 +32,7 @@ const inventory = () => {
         body: JSON.stringify({
           store_id:inventoryId,
           // store_id: "2382a225-42dd-11ef-8eb2-3f93c8370d33"
-          // store_id: "3fb7da68-43ac-11ef-8e10-35bd6906fbae"
+          store_id: "3fb7da68-43ac-11ef-8e10-35bd6906fbae"
         }),
       });
       const status = response.status;
@@ -89,9 +92,9 @@ const inventory = () => {
               console.error("Error parsing image URL:", error);
             }
             return(
-              <Collapsible key={index} title={item.item_name} img={imageUrl}>
-              {<ItemCard item={item.variants}></ItemCard>}
-            </Collapsible>
+              <ListItem key={index} title={item.item_name} img={imageUrl}>
+               <ItemCard item={item.variants}></ItemCard>
+            </ListItem>
 
             )
             

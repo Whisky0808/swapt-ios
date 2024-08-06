@@ -93,7 +93,7 @@ const inventory = () => {
             }
             return(
               <ListItem key={index} title={item.item_name} img={imageUrl}>
-               <ItemCard item={item.variants}></ItemCard>
+               <ItemCard variants={item.variants} id={item.item_id}></ItemCard>
             </ListItem>
 
             )

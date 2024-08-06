@@ -8,17 +8,57 @@ import {
   Pressable,
 } from "react-native";
 import React, { useState } from "react";
-import DropdownComponent from "./DropdownComponent"
+import DropdownComponent from "./DropdownComponent";
+import API_ENDPOINTS from "../lib/api";
 
-const ItemCard = (variants) => {
-  console.log("variants", variants.item);
-  const variants_Set = variants.item;
+const ItemCard = ({ variants, id }) => {
+  const variants_Set = variants;
+  const itemId = id;
   const [modalVisible, setModalVisible] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const [generalTag,setGeneralTag] = useState({});
+
+  const searchTag = async () => {
+    console.log("id", itemId);
+    try {
+      const res = await fetch(API_ENDPOINTS.getGeneralTag, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          id: itemId,
+        }),
+      });
+
+      console.log("Response status:", res.status);
+
+      if (!res.ok) {
+        throw new Error(`HTTP error! Status: ${res.status}`);
+      }
+
+      const data = await res.json();
+      const res_data = data.body;//get a string, but this string is a object
+      const obj = JSON.parse(res_data);
+      const obj_1 = JSON.parse(obj.general_tag[0]);
+      
+      setGeneralTag(obj_1)
+      setModalVisible(true)
+      // console.log(generalTag)
+
+
+    } catch (error) {
+      console.error("Error calling Lambda function:", error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
   return (
     <View>
       <View style={styles.centeredView}>
         <Modal
-          animationType="slide"
+          animationType="slider"
           transparent={true}
           visible={modalVisible}
           onRequestClose={() => {
@@ -28,32 +68,45 @@ const ItemCard = (variants) => {
         >
           <View style={styles.centeredView}>
             <View style={styles.modalView}>
+
+              
+            {Object.keys(generalTag).length > 0 ? (
+                Object.keys(generalTag).map((key) => (
+                  <DropdownComponent key={key} keyName={key} values={generalTag[key]} />
+                ))
+              ) : (
+                <Text>Loading...</Text>
+              )}
+
+
               {variants_Set.map((item, index) => {
                 let imageUrl = "";
-                console.log(item);
+
                 try {
                   imageUrl = item.image;
-                  console.log("fff", imageUrl);
                 } catch (error) {
                   console.error("Error parsing image URL:", error);
                 }
                 return (
-                  <DropdownComponent></DropdownComponent>
-                  // <View style={styles.container} key={index}>
-                    
-                  //   <View style={styles.textArea}>
-                  //     <Text>Stock:{item.inventory}</Text>
-                  //     <Text>Profit:{item.price}</Text>
-                  //     <Text>Catagory:{item.tags}</Text>
-                  //   </View>
-                  //   <Image
-                  //     source={{ uri: imageUrl }}
-                  //     style={styles.img}
-                  //     resizeMode="contain"
-                  //   />
-                  // </View>
+                  
+                  <View style={styles.container} key={index}>
+
+                    <View style={styles.textArea}>
+                      <Text>Stock:{item.inventory}</Text>
+                      <Text>Profit:{item.price}</Text>
+                      <Text>Catagory:{item.tags}</Text>
+                    </View>
+                    <Image
+                      source={{ uri: imageUrl }}
+                      style={styles.img}
+                      resizeMode="contain"
+                    />
+                  </View>
                 );
               })}
+
+
+
               <Pressable
                 style={[styles.button, styles.buttonClose]}
                 onPress={() => setModalVisible(!modalVisible)}
@@ -62,11 +115,10 @@ const ItemCard = (variants) => {
               </Pressable>
             </View>
           </View>
-          
         </Modal>
         <Pressable
           style={[styles.button, styles.buttonOpen]}
-          onPress={() => setModalVisible(true)}
+          onPress={() => searchTag()}
         >
           <Text style={styles.textStyle}>Click For More Details</Text>
         </Pressable>
@@ -111,8 +163,8 @@ const styles = StyleSheet.create({
     marginTop: 22,
   },
   modalView: {
-    width:"90%",
-    height:"70%",
+    width: "90%",
+    height: "70%",
     margin: 20,
     backgroundColor: "white",
     borderRadius: 20,
@@ -128,7 +180,7 @@ const styles = StyleSheet.create({
     elevation: 5,
   },
   button: {
-    width:200,
+    width: 200,
     borderRadius: 20,
     padding: 10,
     elevation: 2,

@@ -3,26 +3,28 @@ import React,{useState} from 'react'
 import { Dropdown } from 'react-native-element-dropdown';
 import AntDesign from '@expo/vector-icons/AntDesign';
 
-const data = [
-    { label: 'Item 1', value: '1' },
-    { label: 'Item 2', value: '2' },
-    { label: 'Item 3', value: '3' },
-    { label: 'Item 4', value: '4' },
-    { label: 'Item 5', value: '5' },
-    { label: 'Item 6', value: '6' },
-    { label: 'Item 7', value: '7' },
-    { label: 'Item 8', value: '8' },
-  ];
 
-  const DropdownComponent = () => {
+// data are transferred as an object into DropdownComponent
+
+  const DropdownComponent = ({keyName,values}) => {
+  
+    
+
+    const convertArrayToData = values.map((item, index) => {
+      return {
+        label: item,
+        value: (index+1).toString(),
+      };
+    });
+
     const [value, setValue] = useState(null);
     const [isFocus, setIsFocus] = useState(false);
-
+  
     const renderLabel = () => {
       if (value || isFocus) {
         return (
           <Text style={[styles.label, isFocus && { color: 'blue' }]}>
-            Dropdown label
+            {keyName}
           </Text>
         );
       }
@@ -31,6 +33,7 @@ const data = [
 
     return (
       <View style={styles.container}>
+        {/* {!isFocus&&<Text>{keyName}</Text>} */}
         {renderLabel()}
         <Dropdown
           style={[styles.dropdown, isFocus && { borderColor: 'blue' }]}
@@ -38,7 +41,7 @@ const data = [
           selectedTextStyle={styles.selectedTextStyle}
           inputSearchStyle={styles.inputSearchStyle}
           iconStyle={styles.iconStyle}
-          data={data}
+          data={convertArrayToData}
           search
           maxHeight={300}
           labelField="label"
@@ -72,8 +75,10 @@ const data = [
       width:"100%",
       backgroundColor: 'white',
       padding: 16,
+      
     },
     dropdown: {
+ 
       height: 50,
       borderColor: 'gray',
       borderWidth: 0.5,
@@ -90,7 +95,7 @@ const data = [
       top: 8,
       zIndex: 999,
       paddingHorizontal: 8,
-      fontSize: 14,
+      fontSize: 15,
     },
     placeholderStyle: {
       fontSize: 16,
